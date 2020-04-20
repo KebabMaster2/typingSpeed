@@ -63,9 +63,9 @@ namespace typingSpeed.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _45_512 {
+        internal static System.Drawing.Bitmap closeBlue {
             get {
-                object obj = ResourceManager.GetObject("_45_512", resourceCulture);
+                object obj = ResourceManager.GetObject("closeBlue", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace typingSpeed.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap closeButton {
+        internal static System.Drawing.Bitmap closeRed {
             get {
-                object obj = ResourceManager.GetObject("closeButton", resourceCulture);
+                object obj = ResourceManager.GetObject("closeRed", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
