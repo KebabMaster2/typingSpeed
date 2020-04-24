@@ -28,20 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelTextOriginal = new System.Windows.Forms.Label();
+            this.components = new System.ComponentModel.Container();
+            this.sourceText = new System.Windows.Forms.Label();
             this.textBoxTextType = new System.Windows.Forms.TextBox();
             this.pictureBoxClose = new System.Windows.Forms.PictureBox();
+            this.typingProgress = new System.Windows.Forms.ProgressBar();
+            this.TypingTimer = new System.Windows.Forms.Timer(this.components);
+            this.timeProgress = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             this.SuspendLayout();
             // 
-            // labelTextOriginal
+            // sourceText
             // 
-            this.labelTextOriginal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTextOriginal.Location = new System.Drawing.Point(64, 36);
-            this.labelTextOriginal.Name = "labelTextOriginal";
-            this.labelTextOriginal.Size = new System.Drawing.Size(653, 52);
-            this.labelTextOriginal.TabIndex = 0;
-            this.labelTextOriginal.Text = "A contango market implies oil traders believe crude prices will rally in the futu" +
+            this.sourceText.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sourceText.Location = new System.Drawing.Point(64, 36);
+            this.sourceText.Name = "sourceText";
+            this.sourceText.Size = new System.Drawing.Size(653, 52);
+            this.sourceText.TabIndex = 0;
+            this.sourceText.Text = "A contango market implies oil traders believe crude prices will rally in the futu" +
     "re, encouraging them to store oil now and to sell at a later date.";
             // 
             // textBoxTextType
@@ -58,15 +62,34 @@
             // 
             this.pictureBoxClose.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBoxClose.Image = global::typingSpeed.Properties.Resources.closeRed;
-            this.pictureBoxClose.Location = new System.Drawing.Point(617, 294);
+            this.pictureBoxClose.Location = new System.Drawing.Point(647, 309);
             this.pictureBoxClose.Name = "pictureBoxClose";
-            this.pictureBoxClose.Size = new System.Drawing.Size(100, 100);
+            this.pictureBoxClose.Size = new System.Drawing.Size(70, 70);
             this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxClose.TabIndex = 2;
             this.pictureBoxClose.TabStop = false;
             this.pictureBoxClose.Click += new System.EventHandler(this.pictureBoxClose_Click);
             this.pictureBoxClose.MouseEnter += new System.EventHandler(this.pictureBox1_MouseEnter);
             this.pictureBoxClose.MouseLeave += new System.EventHandler(this.pictureBoxClose_MouseLeave);
+            // 
+            // typingProgress
+            // 
+            this.typingProgress.Location = new System.Drawing.Point(68, 230);
+            this.typingProgress.Name = "typingProgress";
+            this.typingProgress.Size = new System.Drawing.Size(611, 28);
+            this.typingProgress.TabIndex = 3;
+            // 
+            // TypingTimer
+            // 
+            this.TypingTimer.Interval = 1000;
+            this.TypingTimer.Tick += new System.EventHandler(this.timeProgress_Tick);
+            // 
+            // timeProgress
+            // 
+            this.timeProgress.Location = new System.Drawing.Point(68, 275);
+            this.timeProgress.Name = "timeProgress";
+            this.timeProgress.Size = new System.Drawing.Size(611, 28);
+            this.timeProgress.TabIndex = 4;
             // 
             // Form1
             // 
@@ -75,9 +98,11 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.ControlBox = false;
+            this.Controls.Add(this.timeProgress);
+            this.Controls.Add(this.typingProgress);
             this.Controls.Add(this.pictureBoxClose);
             this.Controls.Add(this.textBoxTextType);
-            this.Controls.Add(this.labelTextOriginal);
+            this.Controls.Add(this.sourceText);
             this.Name = "Form1";
             this.Text = "Typing Speed Test";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
@@ -88,9 +113,12 @@
 
         #endregion
 
-        private System.Windows.Forms.Label labelTextOriginal;
+        private System.Windows.Forms.Label sourceText;
         private System.Windows.Forms.TextBox textBoxTextType;
         private System.Windows.Forms.PictureBox pictureBoxClose;
+        private System.Windows.Forms.ProgressBar typingProgress;
+        private System.Windows.Forms.Timer TypingTimer;
+        private System.Windows.Forms.ProgressBar timeProgress;
     }
 }
 

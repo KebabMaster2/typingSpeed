@@ -12,9 +12,22 @@ namespace typingSpeed
 {
     public partial class Form1 : Form
     {
+        int sec = 0;
         public Form1()
         {
             InitializeComponent();
+            InitializeTypingProgress();
+            InitializeTypingTimer();
+        }
+        private void InitializeTypingTimer()
+        {
+            TypingTimer.Interval = 1000;
+            TypingTimer.Start();
+        }
+        private void InitializeTypingProgress()
+        {
+            typingProgress.Maximum = sourceText.Text.Length;
+            timeProgress.Maximum = 60;
         }
 
         private void pictureBox1_MouseEnter(object sender, EventArgs e)
@@ -37,17 +50,19 @@ namespace typingSpeed
             if (TextsAreSame())
             {
                 AllowTyping();
+                typingProgress.Value = textBoxTextType.Text.Length;
             }
             else
             {
                 BlockTyping();
             }
         }
+
         private bool TextsAreSame()
         {
             int characterCount;
             characterCount = textBoxTextType.Text.Length;
-            string lablString = labelTextOriginal.Text.Substring(0, characterCount);
+            string lablString = sourceText.Text.Substring(0, characterCount);
             if (textBoxTextType.Text != lablString)
             {
                 return false;
@@ -61,15 +76,21 @@ namespace typingSpeed
         {
             int characterCount;
             characterCount = textBoxTextType.Text.Length;
-            string lablString = labelTextOriginal.Text.Substring(0, characterCount);           
+            string lablString = sourceText.Text.Substring(0, characterCount);           
             textBoxTextType.MaxLength = characterCount;
             textBoxTextType.ForeColor = Color.Red;
             
         }
         private void AllowTyping()
         {
-            textBoxTextType.MaxLength = labelTextOriginal.Text.Length;
+            textBoxTextType.MaxLength = sourceText.Text.Length;
             textBoxTextType.ForeColor = Color.Black;
+        }
+
+        private void timeProgress_Tick(object sender, EventArgs e)
+        {
+            sec += 1;
+            timeProgress.Value = sec;
         }
     }
 }
