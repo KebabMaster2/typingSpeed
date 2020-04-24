@@ -30,11 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             this.sourceText = new System.Windows.Forms.Label();
-            this.textBoxTextType = new System.Windows.Forms.TextBox();
+            this.TargetText = new System.Windows.Forms.TextBox();
             this.pictureBoxClose = new System.Windows.Forms.PictureBox();
             this.typingProgress = new System.Windows.Forms.ProgressBar();
             this.TypingTimer = new System.Windows.Forms.Timer(this.components);
             this.timeProgress = new System.Windows.Forms.ProgressBar();
+            this.CurrentCPM = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,15 +49,15 @@
             this.sourceText.Text = "A contango market implies oil traders believe crude prices will rally in the futu" +
     "re, encouraging them to store oil now and to sell at a later date.";
             // 
-            // textBoxTextType
+            // TargetText
             // 
-            this.textBoxTextType.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxTextType.Location = new System.Drawing.Point(68, 110);
-            this.textBoxTextType.Multiline = true;
-            this.textBoxTextType.Name = "textBoxTextType";
-            this.textBoxTextType.Size = new System.Drawing.Size(611, 103);
-            this.textBoxTextType.TabIndex = 1;
-            this.textBoxTextType.TextChanged += new System.EventHandler(this.textBoxTextType_TextChanged);
+            this.TargetText.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TargetText.Location = new System.Drawing.Point(68, 110);
+            this.TargetText.Multiline = true;
+            this.TargetText.Name = "TargetText";
+            this.TargetText.Size = new System.Drawing.Size(611, 103);
+            this.TargetText.TabIndex = 1;
+            this.TargetText.TextChanged += new System.EventHandler(this.textBoxTextType_TextChanged);
             // 
             // pictureBoxClose
             // 
@@ -91,6 +92,16 @@
             this.timeProgress.Size = new System.Drawing.Size(611, 28);
             this.timeProgress.TabIndex = 4;
             // 
+            // CurrentCPM
+            // 
+            this.CurrentCPM.AutoSize = true;
+            this.CurrentCPM.Location = new System.Drawing.Point(84, 333);
+            this.CurrentCPM.Name = "CurrentCPM";
+            this.CurrentCPM.Size = new System.Drawing.Size(79, 13);
+            this.CurrentCPM.TabIndex = 5;
+            this.CurrentCPM.Text = "Current CPM: 0";
+            this.CurrentCPM.Click += new System.EventHandler(this.CurrentCPM_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -98,10 +109,11 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.ControlBox = false;
+            this.Controls.Add(this.CurrentCPM);
             this.Controls.Add(this.timeProgress);
             this.Controls.Add(this.typingProgress);
             this.Controls.Add(this.pictureBoxClose);
-            this.Controls.Add(this.textBoxTextType);
+            this.Controls.Add(this.TargetText);
             this.Controls.Add(this.sourceText);
             this.Name = "Form1";
             this.Text = "Typing Speed Test";
@@ -114,11 +126,12 @@
         #endregion
 
         private System.Windows.Forms.Label sourceText;
-        private System.Windows.Forms.TextBox textBoxTextType;
+        private System.Windows.Forms.TextBox TargetText;
         private System.Windows.Forms.PictureBox pictureBoxClose;
         private System.Windows.Forms.ProgressBar typingProgress;
         private System.Windows.Forms.Timer TypingTimer;
         private System.Windows.Forms.ProgressBar timeProgress;
+        private System.Windows.Forms.Label CurrentCPM;
     }
 }
 

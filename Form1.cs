@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace typingSpeed
@@ -13,6 +7,7 @@ namespace typingSpeed
     public partial class Form1 : Form
     {
         int sec = 0;
+        bool typingStarted = false;
         public Form1()
         {
             InitializeComponent();
@@ -22,7 +17,7 @@ namespace typingSpeed
         private void InitializeTypingTimer()
         {
             TypingTimer.Interval = 1000;
-            TypingTimer.Start();
+            
         }
         private void InitializeTypingProgress()
         {
@@ -47,23 +42,37 @@ namespace typingSpeed
 
         private void textBoxTextType_TextChanged(object sender, EventArgs e)
         {
+            if (!typingStarted)
+            {
+                TypingTimer.Start();
+                typingStarted = true;
+            }
             if (TextsAreSame())
             {
                 AllowTyping();
-                typingProgress.Value = textBoxTextType.Text.Length;
+                typingProgress.Value = TargetText.Text.Length;
+                if (TargetText.Text.Length == sourceText.Text.Length)
+                {
+                    TypingOver();
+                }
             }
             else
             {
                 BlockTyping();
             }
+            UpdateCurrentCPM();
+        }
+        private void UpdateCurrentCPM()
+        {
+            CurrentCPM.Text = "Current CPM: " + CalculateCPM();
         }
 
         private bool TextsAreSame()
         {
             int characterCount;
-            characterCount = textBoxTextType.Text.Length;
+            characterCount = TargetText.Text.Length;
             string lablString = sourceText.Text.Substring(0, characterCount);
-            if (textBoxTextType.Text != lablString)
+            if (TargetText.Text != lablString)
             {
                 return false;
             }
@@ -75,22 +84,58 @@ namespace typingSpeed
         private void BlockTyping()
         {
             int characterCount;
-            characterCount = textBoxTextType.Text.Length;
-            string lablString = sourceText.Text.Substring(0, characterCount);           
-            textBoxTextType.MaxLength = characterCount;
-            textBoxTextType.ForeColor = Color.Red;
-            
+            characterCount = TargetText.Text.Length;
+            string lablString = sourceText.Text.Substring(0, characterCount);
+            TargetText.MaxLength = characterCount;
+            TargetText.ForeColor = Color.Red;
+
         }
         private void AllowTyping()
         {
-            textBoxTextType.MaxLength = sourceText.Text.Length;
-            textBoxTextType.ForeColor = Color.Black;
+            TargetText.MaxLength = sourceText.Text.Length;
+            TargetText.ForeColor = Color.Black;
         }
 
         private void timeProgress_Tick(object sender, EventArgs e)
         {
-            sec += 1;
-            timeProgress.Value = sec;
+            
+            sec += 1;           
+            try
+            {
+                timeProgress.Value = sec;
+            }
+            catch 
+            {
+
+            }
+            UpdateCurrentCPM();
+
+
+        }
+        private int CalculateCPM()
+        {
+            int cpm;
+            try
+            {
+                cpm= TargetText.Text.Length * 60 / sec;
+                return cpm;
+            }
+            catch (Exception)
+            {
+                return 0;
+
+            }
+
+        }
+        private void TypingOver()
+        {
+            TypingTimer.Stop();
+            MessageBox.Show("Time is up! Your result is " + CalculateCPM());
+        }
+
+        private void CurrentCPM_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
